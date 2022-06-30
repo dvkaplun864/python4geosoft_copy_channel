@@ -1,0 +1,89 @@
+//===========================================================================
+// clang-format off
+NAME          = "COPY CHANNEL GUI"
+#include <version.gxh>
+
+TRANSLATIONDOMAIN = "core"
+TRANSLATIONFRIENDLYPATH = "GX/Database Tools/Filters"
+
+DESCRIPTION   = "PYTHON GUI"
+
+//===========================================================================
+
+RESOURCE = "copych_gui.gr"
+#include "copych_gui.grh"
+
+//===========================================================================
+
+#include <all.gxh>
+// clang-format on
+
+//===========================================================================
+//                             GLOBAL VARIABLES
+//===========================================================================
+
+
+EDB EData;
+DB Data;
+
+DGW Diag;             // Dialogue handle
+LST List;             // List handle
+
+int i;                // utility int
+
+//===========================================================================
+//                            PYTHON GUI
+//===========================================================================
+
+{
+   // --- Get the Database ---
+
+   EData = Current_EDB();
+   Data = Lock_EDB(EData);
+
+   // --- Are we running interactively ? ---
+
+   if (iInteractive_SYS())
+   {
+      // --- Create the Dialogue ---
+
+      Diag = Create_DGW("COPYCHGUI");
+
+
+      // --- Set up lists ---
+
+      List = GetList_DGW(Diag, _COPYCHGUI_0);
+      SymbLST_DB(Data, List, DB_SYMB_CHAN);
+      Sort_LST(List, 0, 0);
+      List = GetList_DGW(Diag, _COPYCHGUI_1);
+      SymbLST_DB(Data, List, DB_SYMB_CHAN);
+      Sort_LST(List, 0, 0);
+
+      // --- Set any Defaults from INI ---
+
+      SetInfoSYS_DGW(Diag, _COPYCHGUI_0, DGW_TEXT, "COPYCHGUI", "IN");
+      SetInfoSYS_DGW(Diag, _COPYCHGUI_1, DGW_TEXT, "COPYCHGUI", "OUT");
+     
+
+      // --- Run the Dialogue ---
+
+      i = iRunDialogue_DGW(Diag);
+      if (i != 0) Cancel_SYS();  // He hit cancel
+
+
+      // --- Get the Strings and replace in INI ---
+
+      GetInfoSYS_DGW(Diag, _COPYCHGUI_0, DGW_TEXT, "COPYCHGUI", "IN");
+      GetInfoSYS_DGW(Diag, _COPYCHGUI_1, DGW_TEXT, "COPYCHGUI", "OUT");
+      
+
+      
+      // --- Destroy the Dialogue ---
+
+      Destroy_DGW(Diag);
+   }
+
+
+   UnLock_EDB(EData);
+
+}

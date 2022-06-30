@@ -1,0 +1,14 @@
+//
+// PYTHON_GUI.GRC
+//-----------------------------------------------------------------------------
+
+RESOURCE,FORM,COPYCHGUI,"GUI for COPY CHANNEL Python Script",-1
+LEDIT,,,14,"Input channel",R,FORCE,,CHAN
+LEDIT,,,14,"Output channel",R,,,CHAN
+EBUT,&OK,0
+EBUT,&Cancel,1,CANCEL
+HBUT,&Help,help
+
+RESOURCE,LIST,CHAN
+
+//RESOURCE,HELP,help,nogx.hlp

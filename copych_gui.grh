@@ -1,0 +1,26 @@
+﻿//------------------------------------------------------------------------
+//                         RESOURCE HEADER FILE
+//------------------------------------------------------------------------
+//
+// INPUT RESOURCE SCRIPT : C:\Python4Geosoft\copych_gui.grc
+//
+
+//------------------------------------------------------------------------
+// FORM RESOURCE COPYCHGUI
+
+// _COPYCHGUI_0   List Edit Field - Input channel List Used - CHAN
+// _COPYCHGUI_1   List Edit Field - Output channel List Used - CHAN
+// _COPYCHGUI_2   Exit Button - OK
+// _COPYCHGUI_3   Exit Button - Cancel
+// _COPYCHGUI_4   Help Button - Help
+
+#define _COPYCHGUI_0  ((DGW_OBJ) 0  )
+#define _COPYCHGUI_1  ((DGW_OBJ) 1  )
+#define _COPYCHGUI_2  ((DGW_OBJ) 2  )
+#define _COPYCHGUI_3  ((DGW_OBJ) 3  )
+#define _COPYCHGUI_4  ((DGW_OBJ) 4  )
+
+
+//------------------------------------------------------------------------
+// LIST RESOURCE CHAN
+
